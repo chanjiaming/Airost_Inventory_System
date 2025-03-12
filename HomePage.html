@@ -1,0 +1,86 @@
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const userEmail = localStorage.getItem('userEmail');
+        if (!userEmail) {
+            window.location.href = 'index.html'; // Redirect to login if not authenticated
+        }
+    });
+</script>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>UTM CAIRO Inventory System</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <!--font: 100, 300, 400, 500, 700-->
+
+    <link rel="stylesheet" href="styles/header-2.css">
+    <link rel="stylesheet" href="styles/home-2.css">
+    <link rel="stylesheet" href="styles/general-2.css">
+    <link rel="stylesheet" href="styles/featured_dorm_grid.css">
+  </head>
+
+  <body>
+    <header>
+      <div class="left-section">
+        <img class="utm_logo" src="Images-home-login/LOGO UTM REVERSE (putih).png">
+      <p class="utm_logo_text">
+      <span class="logo_text_1">University Technology Malaysia</span>
+        <span class="logo_text_2">CAIRO Inventory System</span>
+      </p>
+      </div>
+      <div class="right-section">
+        <a class="home_nav" href="List-of-Items_Page.php" >HOME</a>
+        <a class="about_nav" href="https://www.youtube.com/" >ABOUT</a>
+        <a class="help_nav" href="https://www.youtube.com/" >HELP</a>
+        <a class="contact_nav" href="ListOfItems.html">ITEM LIST</a> 
+        <!-- plz note that i mixed up contact_nav and database. needs to be separated in the future. -->       
+        <div class="header_icon_container">
+          <img class="hostel_icon" src="Images-home-login/robot-assistant.png">
+        </div>
+      </div>
+    </header>
+    <img class="front_cover" src="Images-home-login/AIROST_main_picture.jpg">
+
+    <main class="home_lower">
+      <div class="left_text">
+        <div class="wooson">
+          <p class="home_title">AIROST Inventory System</p>
+        </div>
+        <div class="i">
+          <p>&#10004 Free hardware-lending</p>
+          <p>&#10004 Different types of new equipments</p>
+          <p>&#10004 Available for all AIROSTian</p>
+        </div>
+        <div class="button">
+          <a href="index.html"  class="login">LOGIN</a>
+        </div>
+      </div>
+      <div class="right_text">
+        <img class="arduino" src="images/inventory1.jpg">
+      </div>
+      
+      <div class="right_text2">
+        <img class="arduino2" src="images/inventory2.jpg">
+      </div>
+      <div class="left_text2">
+          <p class="home_title2">What is Inventory System?</p>
+        <div class="i2">
+          <p>The inventory system at Universiti Teknologi Malaysia's AIROST Team efficiently manages and tracks hardware resources using advanced tools and processes. This system ensures meticulous organization and monitoring of diverse technological assets, optimizing operational efficiency, minimizing resource wastage, and streamlining overall technological infrastructure management. It contributes significantly to the success of the team's cutting-edge research in artificial intelligence and robotics.</p>
+        </div>       
+      </div>
+    </main>
+
+  
+    <div>
+      <p class="small_title2">Why Inventory system is important?</p>
+      <p class="small_subtitle2">
+        An inventory system is essential for Universiti Teknologi Malaysia AIROST Team to efficiently manage and track its components, tools, and equipment. It ensures resource allocation, saves time through organization, facilitates activity planning, and promotes accountability among team members.</p>
+    </div>
+
+
+  </body>
+</html>

@@ -1,0 +1,49 @@
+.utm-logo-image {
+  margin-top: 30px;
+  margin-left: 20px;
+  height: 70px;
+}
+
+.sidebar {
+  flex: 1;
+  background-color: rgb(0, 0, 45);
+  margin-top: 30px;
+  border-top-right-radius: 80px;
+  box-shadow: 3px -3px 50px rgba(0, 0, 0, 0.20);
+}
+
+.sidebar-division {
+  display: flex;
+  flex-direction: column;
+  margin-top: 80px;
+}
+
+.sidebar-link {
+  display: grid;
+  grid-template-columns: 60px 210px;
+  margin-top: 35px;
+  margin-left: 30px;
+  align-items: center;
+}
+
+.sidebar-icon {
+  height: 40px;
+  align-items: center;
+}
+
+.sidebar-link-text {
+  color: white;
+  font-size: 21px;
+  font-weight: 300;
+  text-decoration: none;
+  font-family: Rubik;
+  transition: font-size 0.20s;
+}
+
+.sidebar-link-text:hover {
+  font-size: 24px;
+}
+
+
+
+

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Database Showcase</title>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+
+    <link rel="stylesheet" href="databasePage.css">
+</head>
+<body>
+    <h1>Database Showcase</h1>
+
+    <input type="file" id="excelFileInput" accept=".xlsx, .xls">
+    <button onclick="uploadExcelToFirestore()">Upload Excel</button>
+
+    <div id="itemsContainer" class="right-section-database"></div>
+
+    <script>
+        // ✅ Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCikQjkX8g918boNUjYiWGUIl2zN3dUvYE",
+            authDomain: "airost-inventory-system.firebaseapp.com",
+            projectId: "airost-inventory-system",
+            storageBucket: "airost-inventory-system.firebasestorage.app",
+            messagingSenderId: "784896148409",
+            appId: "1:784896148409:web:d08078419b05334d1dac68",
+            measurementId: "G-6SBZRPRGWM"
+        };
+
+        // ✅ Initialize Firebase & Firestore
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // ✅ Function to Upload Excel Data to Firestore
+        function uploadExcelToFirestore() {
+            const fileInput = document.getElementById('excelFileInput');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert("Please select an Excel file first!");
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = async function (event) {
+                const data = new Uint8Array(event.target.result);
+                const workbook = XLSX.read(data, { type: 'array' });
+                const sheetName = workbook.SheetNames[0];
+                const sheet = workbook.Sheets[sheetName];
+
+                // ✅ Convert Excel to JSON
+                const inventoryData = XLSX.utils.sheet_to_json(sheet);
+
+                // ✅ Upload to Firestore
+                const inventoryRef = db.collection("inventory");
+
+                try {
+                    for (const item of inventoryData) {
+                        await inventoryRef.add(item);
+                    }
+                    console.log("✅ Excel data uploaded successfully!");
+                    alert("Inventory uploaded successfully!");
+                } catch (error) {
+                    console.error("❌ Error uploading inventory:", error);
+                    alert("Error uploading inventory.");
+                }
+            };
+
+            reader.readAsArrayBuffer(file);
+        }
+
+        // ✅ Real-Time Firestore Data Display
+        function listenToInventoryChanges() {
+            const inventoryRef = db.collection("inventory");
+
+            inventoryRef.onSnapshot(snapshot => {
+                let html = `
+                    <div class="example-info-grid">
+                        <div class="top-info">Name</div>
+                        <div class="top-info">Quantity</div>
+                        <div class="top-info">Location</div>
+                    </div>`;
+
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    html += `
+                        <div class="example-info-grid">
+                            <div class="info-name-container">
+                                <span class="info-name">${data.name || "N/A"}</span>
+                            </div>
+                            <div class="num">${data.quantity || "N/A"}</div>
+                            <div class="link">${data.location || "N/A"}</div>
+                        </div>`;
+                });
+
+                document.getElementById("itemsContainer").innerHTML = html;
+            });
+        }
+
+        // ✅ Start Real-Time Sync When Page Loads
+        document.addEventListener("DOMContentLoaded", function () {
+            listenToInventoryChanges();
+        });
+
+    </script>
+</body>
+</html>

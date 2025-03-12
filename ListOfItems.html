@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory System - List of Items</title>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+    <link rel="stylesheet" href="styles/sidebar.css">
+    <link rel="stylesheet" href="styles/body.css">
+    <link rel="stylesheet" href="styles/list-of-items.css">
+</head>
+<body style="background-color: #fafafa;">
+    <div class="body-container">
+        <section class="left-section">
+            <div class="utm-logo">
+                <img class="utm-logo-image" src="images/UTM_LOGO.png">
+            </div>
+            <div class="sidebar">
+                <div class="sidebar-division">
+                    <div class="sidebar-link">
+                        <img class="sidebar-icon" src="images/Icons/Home_icon.png">
+                        <a class="sidebar-link-text" href="HomePage.html">HOME</a>
+                    </div>
+                    <div class="sidebar-link">
+                        <img class="sidebar-icon" src="images/Icons/List_icon.png">
+                        <a class="sidebar-link-text" href="ListOfItems.html">LIST OF ITEMS</a>
+                    </div>
+                    <div class="sidebar-link">
+                        <img class="sidebar-icon" src="images/Icons/Profile_icon.png">
+                        <a class="sidebar-link-text" href="ProfilePage.html">PROFILE</a>
+                    </div>
+                    <div class="sidebar-link">
+                        <img class="sidebar-icon" src="images/Icons/Settings_icon.png">
+                        <a class="sidebar-link-text" href="MasterPage.html">APPROVAL LIST</a>
+                    </div>
+                    <div class="sidebar-link" style="margin-top: 110px;">
+                        <img class="sidebar-icon" src="images/Icons/Logout_icon.png">
+                        <a class="sidebar-link-text" href="index.html">LOGOUT</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="right-section-list-of-items">
+            <div class="dashboard-title">
+                <div class="header">
+                    <div class="title-container">
+                        <p class="title-text">List of Items</p>
+                    </div>
+                    <div class="cart-container">
+                        <img class="cart-icon" src="images/Icons/online-cart_icon.png">
+                    </div>
+                    <div class="cart-text-container">
+                        <a class="cart-text" href="CartRequest.html">CART</a>
+                    </div>
+                </div>
+            </div>
+            <div class="search-engine">
+                <input class="search-bar" type="text" id="searchInput" placeholder="Search Item">
+                <button class="search-button" onclick="searchItems()">
+                    <img class="search-icon" src="images/Icons/Search_icon.png">
+                </button>
+            </div>
+            <div class="items-list">
+                <div class="items-grid" id="itemsContainer">
+                    <!-- Items will be loaded dynamically from Firestore -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

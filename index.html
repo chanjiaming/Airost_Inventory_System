@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Login: Airost Inventory System</title>
+
+    <link rel="stylesheet" href="styles/loginpage-2.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+</head>
+
+<body background= "\Images-home-login\login5.jpg" >
+
+    <div class="login_page_wrapper">
+        <form id="loginForm">
+            <h1>Login</h1>
+            <div class="input-box">
+                <input type="email" id="emailInput" placeholder="UTM Email" required>
+                <i class='bx bx-envelope'></i>
+            </div>
+            <div class="input-box">
+                <input type="text" id="matricInput" placeholder="Matric Number" required>
+                <i class='bx bx-id-card' ></i>
+            </div>
+            <button type="submit" class="login_page_button">Login</button>
+        </form>
+        <p id="error-message" style="color: red; display: none;">Invalid email or matric number.</p>
+    </div>
+
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAjhvZvx6F-nQS7Gq-xcP2g4VPEoQWfuXo",
+            authDomain: "airost-inventory-system-60861.firebaseapp.com",
+            projectId: "airost-inventory-system-60861",
+            storageBucket: "airost-inventory-system-60861.firebasestorage.app",
+            messagingSenderId: "665682206493",
+            appId: "1:665682206493:web:d46bc1757b43f7a8e54bf4",
+            measurementId: "G-VRPFJ99QLJ"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // Allowed Users
+        const allowedUsers = {
+            "ben@graduate.utm.my": "A23KE",
+            "loh@graduate.utm.my": "A22KE"
+        };
+
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('emailInput').value;
+            const matric = document.getElementById('matricInput').value;
+            const errorMessage = document.getElementById('error-message');
+
+            console.log("Form submitted");
+            console.log("Email:", email);
+            console.log("Matric:", matric);
+
+            if (allowedUsers[email] && allowedUsers[email] === matric) {
+                console.log("User allowed");
+                // Firebase Authentication (Anonymous or Email/Password)
+                auth.signInAnonymously()
+                    .then(() => {
+                        localStorage.setItem('userEmail', email);
+                        window.location.href = 'HomePage.html'; // Redirect to HomePage
+                    })
+                    .catch((error) => {
+                        console.error("Login failed:", error);
+                        errorMessage.textContent = "Login failed: " + error.message;
+                        errorMessage.style.display = "block";
+                    });
+            } else {
+                console.log("Invalid email or matric number");
+                errorMessage.textContent = "Invalid email or matric number.";
+                errorMessage.style.display = "block";
+            }
+        });
+    </script>
+</body>
+</html>

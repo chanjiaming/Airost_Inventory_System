@@ -1,0 +1,9 @@
+.right-section-homepage {
+  background-image: url(../images/homepagePic.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  left: 330px;
+  width: 1160px;
+}

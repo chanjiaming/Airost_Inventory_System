@@ -1,0 +1,19 @@
+@font-face {
+    font-family: font;
+    src: url(RubikDoodleShadow-Regular.ttf);
+}
+
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+    padding-bottom: 3000px;
+}
+
+.front_cover {
+    background-size: cover;
+    width: 1700px;
+    height: auto;
+    margin-bottom: 50px;
+    margin-left: -20px;
+  }

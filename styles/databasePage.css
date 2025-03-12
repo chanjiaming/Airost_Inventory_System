@@ -1,0 +1,84 @@
+.right-section-database {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  left: 330px;
+  width: 1160px;
+  bottom: 30px;
+}
+
+.databasePage-title {
+  font-size: 70px;
+  font-family: 'Anton', sans-serif;
+  font-weight: 700;
+  margin-left: 2px;
+  margin-top: 40px;
+  margin-bottom: 25px;
+}
+
+.title-text {
+  margin-top: 50px;
+  margin-bottom: 0px;
+}
+
+.example-title-text {
+  font-size: 45px;
+  font-family: Anton;
+  font-weight: 500;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 2px;
+}
+
+.example-info-grid {
+  display: grid;
+  grid-template-columns: 2fr 2fr 4fr 2fr 1fr;
+  row-gap: 10px;
+  column-gap: 20px;
+  text-align: center;
+}
+
+.info-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-info {
+  color: #7C7C7C;
+  font-family: Roboto;
+  font-weight: 500;
+}
+
+.info-img {
+  height: 130px;
+  border-radius: 8px;
+}
+
+.info-name-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.info-name {
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.info-text {
+  font-size: 12px;
+  font-family: Roboto;
+  text-align: justify;
+  font-weight: 500;
+}
+
+.link, .num {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 12px;
+}
+
