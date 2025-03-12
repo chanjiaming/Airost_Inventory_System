@@ -1,1 +1,1 @@
-# Airost_Inventory_System
+Refer to README.docs
