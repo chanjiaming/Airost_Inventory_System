@@ -1,1 +1,37 @@
+import firebase_admin
+from firebase_admin import credentials, firestore
+import pandas as pd
+
+# Initialize Firebase
+cred = credentials.Certificate(r"change to firebase Json admin key")
+firebase_admin.initialize_app(cred)
+
+db = firestore.client()
+
+# Define main collection
+main_collection = "inventory"
+
+# Define the mapping of subcollections to their respective CSV files
+csv_files = {
+    "ROBOTICS EQUIPMENT": r"change to file location",
+    "ELECTRONICS": r"change to file location",
+    "HARDWARE & FASTENERS": r"change to file location"
+}
+
+for subcollection, csv_file in csv_files.items():
+    try:
+        # Read CSV file
+        df = pd.read_csv(csv_file)
+
+        for index, row in df.iterrows():
+            # Upload each row to Firestore
+            doc_ref = db.collection(main_collection).document(subcollection).collection("items").document(str(index))
+            doc_ref.set(row.to_dict())
+
+        print(f"Uploaded data to {main_collection}/{subcollection}")
+    
+    except FileNotFoundError:
+        print(f"Error: CSV file not found at {csv_file}")
+    except Exception as e:
+        print(f"Error uploading {subcollection}: {e}")
 
